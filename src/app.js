@@ -21,7 +21,7 @@ registerAuth(router);
 
 app.use(router);
 app.use((req, res) => {
-    res.status(404).send({ error: 404 });
+    res.status(404).send({ status: 404 });
 });
 
 module.exports = app;

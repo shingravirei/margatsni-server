@@ -1,1 +1,1 @@
-# margatsni-backend
+# margatsni-server

@@ -6,9 +6,15 @@ const User = require('../models/User');
 module.exports = (router) => {
     router.post(
         '/user',
-        body('username').isString(),
+        body('username')
+            .exists()
+            .withMessage('username missing')
+            .isString()
+            .trim()
+            .withMessage('must be a string')
+            .isLength({ min: 3 }),
         body('email').isEmail(),
-        body('password').isString(),
+        body('password').isString().isLength({ min: 6 }),
         asyncHandler(async (req, res) => {
             const errors = validationResult(req);
 

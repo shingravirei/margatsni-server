@@ -26,10 +26,14 @@ module.exports = (router) => {
 
             const hash = await bcrypt.hash(password, 10);
 
+            const timestamp = new Date().valueOf();
+
             await User.query().insert({
                 username,
                 email,
-                hash
+                hash,
+                created_at: timestamp,
+                updated_at: timestamp
             });
 
             return res.status(201).end();
@@ -47,6 +51,8 @@ module.exports = (router) => {
             }
 
             const { id } = req.params;
+
+            if (id !== req.user.id) return res.status(401).end();
 
             const result = await User.query().deleteById(id);
 

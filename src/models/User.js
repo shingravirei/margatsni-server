@@ -5,6 +5,21 @@ class User extends Model {
         return 'users';
     }
 
+    static get relationMappings() {
+        const Post = require('./Post');
+
+        return {
+            posts: {
+                relation: Model.HasManyRelation,
+                modelClass: Post,
+                join: {
+                    from: 'user.id',
+                    to: 'posts.user_id'
+                }
+            }
+        };
+    }
+
     static get jsonSchema() {
         return {
             type: 'object',

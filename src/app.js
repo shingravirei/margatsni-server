@@ -7,6 +7,7 @@ const errorHandler = require('./middleware/errorHandler');
 const knex = Knex(require('../knexfile').development);
 const registerUserRouter = require('./routes/user');
 const registerAuth = require('./routes/auth');
+const registerPost = require('./routes/post');
 
 const app = express();
 const router = express.Router();
@@ -25,6 +26,7 @@ app.use(
 // registering the routes
 registerUserRouter(router);
 registerAuth(router);
+registerPost(router);
 app.use(router);
 
 // Unkown routes

@@ -1,0 +1,13 @@
+POST http://localhost:3000/post HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0IiwiaWF0IjoxNjA5ODA3NDIxfQ.bgsptNALQBcrel0HBX7FADDT63j4jqwTKu1fc3CliLE
+Content-Type: application/json
+
+{
+    "text": "Body of the fifth post",
+    "imgLinks": ["one link here", "second"]
+}
+
+###
+
+GET http://localhost:3000/post HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0IiwiaWF0IjoxNjA5ODA3NDIxfQ.bgsptNALQBcrel0HBX7FADDT63j4jqwTKu1fc3CliLE

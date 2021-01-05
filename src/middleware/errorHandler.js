@@ -4,9 +4,9 @@ module.exports = () => (err, req, res, next) => {
     }
 
     if (err.name === 'UnauthorizedError') {
-        return res.status(401).send('Unauthorized');
+        return res.status(401).end();
     }
 
     console.log(err);
-    return res.status(500).send('Internal error');
+    return res.status(500).end();
 };

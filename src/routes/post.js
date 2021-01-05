@@ -29,7 +29,38 @@ module.exports = (router) => {
 
             const posts = await Post.query().where('user_id', id);
 
-            res.json({ posts });
+            if (!posts) return res.status(404).end();
+
+            return res.json({ posts });
+        })
+    );
+
+    router.put(
+        '/post/:id',
+        asyncHandler(async (req, res) => {
+            const { text } = req.body;
+            const { id } = req.params;
+
+            const updatedPost = await Post.query().patchAndFetchById(id, {
+                text
+            });
+
+            if (!updatedPost) return res.status(404).end();
+
+            return res.json({ updatedPost });
+        })
+    );
+
+    router.delete(
+        '/post/:id',
+        asyncHandler(async (req, res) => {
+            const { id } = req.params;
+
+            const result = await Post.query().deleteById(id);
+
+            if (result === 0) return res.status(404).end();
+
+            return res.status(204).end();
         })
     );
 };
